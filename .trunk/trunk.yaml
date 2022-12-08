@@ -6,20 +6,23 @@ runtimes:
 plugins:
   sources:
     - id: trunk
-      ref: v0.0.5
+      ref: v0.0.6
       uri: https://github.com/trunk-io/plugins
 actions:
   enabled:
+    - trunk-announce
+    - trunk-check-pre-push
+    - trunk-fmt-pre-commit
     - trunk-cache-prune
     - trunk-upgrade-available
 cli:
-  version: 1.0.1
+  version: 1.1.0
 lint:
   enabled:
     - actionlint@1.6.22
     - dotenv-linter@3.2.0
     - git-diff-check@SYSTEM
-    - gitleaks@8.15.0
-    - hadolint@2.10.0
+    - gitleaks@8.15.2
+    - hadolint@2.12.0
     - markdownlint@0.32.2
-    - prettier@2.7.1
+    - prettier@2.8.1
