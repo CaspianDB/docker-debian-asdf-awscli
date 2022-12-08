@@ -2,7 +2,7 @@
 
 [![GitHub](https://img.shields.io/github/v/tag/caspiandb/docker-debian-asdf-awscli?label=GitHub)](https://github.com/caspiandb/docker-debian-asdf-awscli)
 [![CI](https://github.com/caspiandb/docker-debian-asdf-awscli/actions/workflows/ci.yaml/badge.svg)](https://github.com/caspiandb/docker-debian-asdf-awscli/actions/workflows/ci.yaml)
-[![Lint](https://github.com/caspiandb/docker-debian-asdf-awscli/actions/workflows/lint.yaml/badge.svg)](https://github.com/caspiandb/docker-debian-asdf-awscli/actions/workflows/lint.yaml)
+[![Trunk Check](https://github.com/caspiandb/docker-debian-asdf-awscli/actions/workflows/trunk.yaml/badge.svg)](https://github.com/caspiandb/docker-debian-asdf-awscli/actions/workflows/trunk.yaml)
 [![Docker Image Version](https://img.shields.io/docker/v/caspiandb/debian-asdf-awscli/latest?label=docker&logo=docker)](https://hub.docker.com/r/caspiandb/debian-asdf-awscli)
 
 Container image with:
@@ -22,7 +22,7 @@ Additional Debian packages:
 
 ## Tags
 
-- `bullseye-YYYYmmdd-awscli-X.Y.Z`, `latest`
+- `awscli-X.Y.Z-asdf-X.Y.Z-bullseye-YYYYmmdd`, `awscli-X.Y.Z`, `latest`
 
 ## Usage
 

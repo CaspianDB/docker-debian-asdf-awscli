@@ -1,10 +1,17 @@
 ## $ docker build --tag caspiandb/debian-asdf-awscli --squash .
 
 ARG DEBIAN_ASDF_TAG=latest
+ARG VERSION=latest
+
+ARG BUILDDATE
+ARG REVISION
+
 
 FROM caspiandb/debian-asdf:${DEBIAN_ASDF_TAG}
 
-COPY .tool-versions /root/
+ARG BUILDDATE
+ARG REVISION
+ARG VERSION
 
 RUN apt-get -q -y update
 RUN apt-get -q -y --no-install-recommends install \
@@ -14,10 +21,24 @@ ADD https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem /usr/local
 
 RUN update-ca-certificates
 
-RUN while read -r plugin _version; do asdf plugin add "$plugin"; done < .tool-versions
+COPY .tool-versions /root/
+
+RUN while read -r plugin _version; do test -d ~/.asdf/plugins/"$plugin" || asdf plugin add "$plugin"; done < .tool-versions
 RUN asdf install
+
+RUN asdf list
 
 RUN apt-get -q -y autoremove
 RUN find /var/cache/apt /var/lib/apt/lists /var/log -type f -delete
 
-RUN asdf list
+LABEL \
+  maintainer="CaspianDB <info@caspiandb.com>" \
+  org.opencontainers.image.created=${BUILDDATE} \
+  org.opencontainers.image.description="Container image with AWS CLI" \
+  org.opencontainers.image.licenses="MIT" \
+  org.opencontainers.image.revision=${REVISION} \
+  org.opencontainers.image.source=https://github.com/CaspianDB/docker-debian-asdf-awscli \
+  org.opencontainers.image.title=debian-asdf-awscli \
+  org.opencontainers.image.url=https://github.com/CaspianDB/docker-debian-asdf-awscli \
+  org.opencontainers.image.vendor=CaspianDB \
+  org.opencontainers.image.version=${VERSION}
